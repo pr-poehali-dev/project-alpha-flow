@@ -202,20 +202,7 @@ export default function HeroSection() {
                 Использую современные методики: арт-терапию, сказкотерапию, игровые техники.
                 Каждый ребёнок уникален — и именно к каждому ищу свой подход.
               </p>
-              <div className="flex gap-8 pt-4">
-                <div>
-                  <p className="text-3xl font-light text-[#6B5EA8]">10+</p>
-                  <p className="text-xs text-gray-500 mt-1">лет опыта</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-light text-[#6B5EA8]">500+</p>
-                  <p className="text-xs text-gray-500 mt-1">консультаций</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-light text-[#6B5EA8]">30+</p>
-                  <p className="text-xs text-gray-500 mt-1">публикаций</p>
-                </div>
-              </div>
+
             </div>
             <div className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
