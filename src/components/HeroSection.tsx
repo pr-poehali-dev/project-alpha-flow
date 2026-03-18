@@ -68,10 +68,7 @@ function ContactForm() {
 }
 
 const images = [
-  'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-2.jpg',
   'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-1.jpg',
-  'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-4.jpg',
-  'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-5.jpg',
 ];
 
 const navItems = [
@@ -195,19 +192,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="absolute bottom-8 right-8 z-20 flex gap-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={cn(
-                'h-1 transition-all duration-300',
-                currentIndex === index ? 'w-12 bg-white' : 'w-8 bg-white/40 hover:bg-white/60'
-              )}
-              aria-label={`Перейти к слайду ${index + 1}`}
-            />
-          ))}
-        </div>
+
       </section>
 
       {/* ── NAVIGATION ── */}
