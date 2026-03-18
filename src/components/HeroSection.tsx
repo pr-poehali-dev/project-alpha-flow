@@ -2,6 +2,71 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
+function ContactForm() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
+  if (sent) {
+    return (
+      <div className="text-center py-10 space-y-3">
+        <div className="text-4xl">✅</div>
+        <p className="font-semibold text-gray-900">Сообщение отправлено!</p>
+        <p className="text-sm text-gray-500">Надежда Николаевна свяжется с вами в ближайшее время.</p>
+        <button onClick={() => { setSent(false); setForm({ name: '', email: '', message: '' }); }} className="text-sm text-[#6B5EA8] hover:underline mt-2">Отправить ещё одно</button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1.5">Ваше имя</label>
+        <input
+          type="text"
+          required
+          placeholder="Иванова Мария Петровна"
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#6B5EA8] transition-colors"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1.5">Электронная почта</label>
+        <input
+          type="email"
+          required
+          placeholder="example@mail.ru"
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#6B5EA8] transition-colors"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-gray-500 mb-1.5">Сообщение</label>
+        <textarea
+          required
+          rows={4}
+          placeholder="Опишите ваш вопрос или запрос..."
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-300 focus:outline-none focus:border-[#6B5EA8] transition-colors resize-none"
+        />
+      </div>
+      <button
+        type="submit"
+        className="w-full bg-[#6B5EA8] text-white py-3 rounded-lg text-sm font-medium hover:bg-[#5a4e90] transition-colors"
+      >
+        Отправить сообщение
+      </button>
+    </form>
+  );
+}
+
 const images = [
   'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-2.jpg',
   'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-1.jpg',
@@ -202,7 +267,6 @@ export default function HeroSection() {
                 Использую современные методики: арт-терапию, сказкотерапию, игровые техники.
                 Каждый ребёнок уникален — и именно к каждому ищу свой подход.
               </p>
-
             </div>
             <div className="relative">
               <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
@@ -216,6 +280,52 @@ export default function HeroSection() {
                 <p className="text-sm font-light opacity-80">Специализация</p>
                 <p className="font-medium">Педагогическая психология</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACT SECTION ── */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Left — info */}
+            <div className="space-y-6">
+              <span className="text-xs font-semibold tracking-widest text-[#6B5EA8] uppercase">Связь</span>
+              <h2 className="text-3xl font-light text-gray-900 md:text-4xl">Напишите мне</h2>
+              <p className="text-gray-600 leading-relaxed">
+                Если у вас есть вопросы или вы хотите записаться на консультацию — заполните форму,
+                и я свяжусь с вами в ближайшее время.
+              </p>
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center text-lg">📧</div>
+                  <div>
+                    <p className="text-xs text-gray-400">Электронная почта</p>
+                    <p className="text-gray-700 font-medium">example@mail.ru</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center text-lg">🏫</div>
+                  <div>
+                    <p className="text-xs text-gray-400">Место работы</p>
+                    <p className="text-gray-700 font-medium">Название образовательного учреждения</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center text-lg">🕐</div>
+                  <div>
+                    <p className="text-xs text-gray-400">Приёмные часы</p>
+                    <p className="text-gray-700 font-medium">Пн–Пт, 9:00 – 17:00</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — form */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">Форма обратной связи</h3>
+              <ContactForm />
             </div>
           </div>
         </div>
