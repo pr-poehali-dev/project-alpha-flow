@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const images = [
@@ -11,27 +12,48 @@ const images = [
 const navItems = [
   {
     label: 'О себе',
-    sub: ['Повышение квалификации', 'Результаты профессиональной деятельности', 'Публикации', 'Мои достижения'],
+    sub: [
+      { label: 'Повышение квалификации', path: '/about/qualification' },
+      { label: 'Результаты профессиональной деятельности', path: '/about/results' },
+      { label: 'Публикации', path: '/about/publications' },
+      { label: 'Мои достижения', path: '/about/achievements' },
+    ],
   },
   {
     label: 'Документы',
-    sub: ['Программы', 'Планы работы', 'Деятельность в МО'],
+    sub: [
+      { label: 'Программы', path: '/documents/programs' },
+      { label: 'Планы работы', path: '/documents/plans' },
+      { label: 'Деятельность в МО', path: '/documents/mo' },
+    ],
   },
   {
     label: 'Обучающимся',
-    sub: ['Советы психолога', 'Профориентация'],
+    sub: [
+      { label: 'Советы психолога', path: '/students/tips' },
+      { label: 'Профориентация', path: '/students/proforientation' },
+    ],
   },
   {
     label: 'Родителям',
-    sub: ['Советы родителям', 'Родительское собрание'],
+    sub: [
+      { label: 'Советы родителям', path: '/parents/tips' },
+      { label: 'Родительское собрание', path: '/parents/meeting' },
+    ],
   },
   {
     label: 'Педагогам',
-    sub: ['Диагностический материал', 'Памятки', 'Игры'],
+    sub: [
+      { label: 'Диагностический материал', path: '/teachers/diagnostic' },
+      { label: 'Памятки', path: '/teachers/memos' },
+      { label: 'Игры', path: '/teachers/games' },
+    ],
   },
   {
     label: 'Интересно',
-    sub: ['Сказкотерапия'],
+    sub: [
+      { label: 'Сказкотерапия', path: '/interesting/fairytale' },
+    ],
   },
 ];
 
@@ -52,7 +74,6 @@ export default function HeroSection() {
     <>
       {/* ── HERO ── */}
       <section className="relative h-screen w-full overflow-hidden bg-white">
-        {/* Background slideshow */}
         <div className="absolute inset-0">
           {images.map((src, index) => (
             <div
@@ -69,12 +90,9 @@ export default function HeroSection() {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
 
-        {/* Content */}
         <div className="relative z-10 flex h-full items-center">
           <div className="container mx-auto px-8 md:px-16">
             <div className="flex max-w-2xl flex-col gap-10">
-
-              {/* Portrait */}
               <div
                 className={cn(
                   'transform transition-all duration-1000 ease-out',
@@ -90,7 +108,6 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              {/* Name & Title */}
               <div
                 className={cn(
                   'transform transition-all duration-1000 delay-300 ease-out',
@@ -113,7 +130,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Slide indicators */}
         <div className="absolute bottom-8 right-8 z-20 flex gap-2">
           {images.map((_, index) => (
             <button
@@ -147,16 +163,17 @@ export default function HeroSection() {
                   </svg>
                 </button>
 
-                {/* Dropdown */}
                 {openMenu === item.label && (
-                  <div className="absolute top-full left-0 bg-white border border-gray-100 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50">
+                  <div className="absolute top-full left-0 bg-white border border-gray-100 shadow-lg rounded-b-lg min-w-[240px] py-2 z-50">
                     {item.sub.map((sub) => (
-                      <button
-                        key={sub}
-                        className="w-full text-left px-5 py-2.5 text-sm text-gray-600 hover:bg-[#6B5EA8]/8 hover:text-[#6B5EA8] transition-colors"
+                      <Link
+                        key={sub.path}
+                        to={sub.path}
+                        className="block w-full text-left px-5 py-2.5 text-sm text-gray-600 hover:bg-purple-50 hover:text-[#6B5EA8] transition-colors"
+                        onClick={() => setOpenMenu(null)}
                       >
-                        {sub}
-                      </button>
+                        {sub.label}
+                      </Link>
                     ))}
                   </div>
                 )}
@@ -226,24 +243,24 @@ export default function HeroSection() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '🎓', title: 'Обучающимся', desc: 'Советы психолога, помощь в профориентации, работа с тревогой и учёбой' },
-              { icon: '👨‍👩‍👧', title: 'Родителям', desc: 'Консультации, советы по воспитанию, родительские собрания и встречи' },
-              { icon: '📚', title: 'Педагогам', desc: 'Диагностические материалы, памятки, развивающие игры для работы в классе' },
-              { icon: '🌱', title: 'Сказкотерапия', desc: 'Авторские сказки и методики для проработки трудных ситуаций через истории' },
-              { icon: '📋', title: 'Документы', desc: 'Программы, планы работы, отчётная документация и методические материалы' },
-              { icon: '🏆', title: 'Достижения', desc: 'Публикации, повышение квалификации, профессиональные конкурсы' },
+              { icon: '🎓', title: 'Обучающимся', desc: 'Советы психолога, помощь в профориентации, работа с тревогой и учёбой', path: '/students/tips' },
+              { icon: '👨‍👩‍👧', title: 'Родителям', desc: 'Консультации, советы по воспитанию, родительские собрания и встречи', path: '/parents/tips' },
+              { icon: '📚', title: 'Педагогам', desc: 'Диагностические материалы, памятки, развивающие игры для работы в классе', path: '/teachers/diagnostic' },
+              { icon: '🌱', title: 'Сказкотерапия', desc: 'Авторские сказки и методики для проработки трудных ситуаций через истории', path: '/interesting/fairytale' },
+              { icon: '📋', title: 'Документы', desc: 'Программы, планы работы, отчётная документация и методические материалы', path: '/documents/programs' },
+              { icon: '🏆', title: 'Достижения', desc: 'Публикации, повышение квалификации, профессиональные конкурсы', path: '/about/achievements' },
             ].map((card) => (
-              <div key={card.title} className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+              <Link key={card.title} to={card.path} className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-all border border-gray-100 hover:border-[#6B5EA8]/30 group">
                 <div className="text-3xl mb-4">{card.icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-2">{card.title}</h3>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#6B5EA8] transition-colors">{card.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{card.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── NEWS / NEW INFO SECTION ── */}
+      {/* ── NEWS SECTION ── */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="flex items-end justify-between mb-14">
@@ -253,14 +270,13 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Placeholder cards — сюда можно добавлять новые материалы */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { tag: 'Советы психолога', date: '15 марта 2026', title: 'Как помочь ребёнку справиться с тревогой перед экзаменом', excerpt: 'Практические рекомендации для учеников и их родителей в период итоговой аттестации.' },
-              { tag: 'Родителям', date: '10 марта 2026', title: 'Родительское собрание: итоги и полезные ресурсы', excerpt: 'Материалы и презентации с последнего родительского собрания доступны для скачивания.' },
-              { tag: 'Сказкотерапия', date: '1 марта 2026', title: 'Новая сказка: «Дружба начинается с улыбки»', excerpt: 'Авторская терапевтическая сказка для работы с темой дружбы и принятия в коллективе.' },
+              { tag: 'Советы психолога', date: '15 марта 2026', title: 'Как помочь ребёнку справиться с тревогой перед экзаменом', excerpt: 'Практические рекомендации для учеников и их родителей в период итоговой аттестации.', path: '/students/tips' },
+              { tag: 'Родителям', date: '10 марта 2026', title: 'Родительское собрание: итоги и полезные ресурсы', excerpt: 'Материалы и презентации с последнего родительского собрания доступны для скачивания.', path: '/parents/meeting' },
+              { tag: 'Сказкотерапия', date: '1 марта 2026', title: 'Новая сказка: «Дружба начинается с улыбки»', excerpt: 'Авторская терапевтическая сказка для работы с темой дружбы и принятия в коллективе.', path: '/interesting/fairytale' },
             ].map((post) => (
-              <article key={post.title} className="group cursor-pointer">
+              <Link key={post.title} to={post.path} className="group cursor-pointer">
                 <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden mb-5">
                   <img
                     src="/placeholder.jpg"
@@ -274,7 +290,7 @@ export default function HeroSection() {
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#6B5EA8] transition-colors leading-snug">{post.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{post.excerpt}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
