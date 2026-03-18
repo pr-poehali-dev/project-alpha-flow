@@ -279,7 +279,7 @@ export default function HeroSection() {
               <span className="text-xs font-semibold tracking-widest text-[#6B5EA8] uppercase">Связь</span>
               <h2 className="text-3xl font-light text-gray-900 md:text-4xl">Напишите мне</h2>
               <p className="text-gray-600 leading-relaxed">
-                Если у вас есть вопросы или вы хотите записаться на консультацию — заполните форму,
+                Если у вас есть вопросы — заполните форму,
                 и я свяжусь с вами в ближайшее время.
               </p>
               <div className="space-y-4 pt-2">
