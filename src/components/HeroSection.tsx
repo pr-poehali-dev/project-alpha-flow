@@ -68,7 +68,7 @@ function ContactForm() {
 }
 
 const images = [
-  'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-1.jpg',
+  'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-2.jpg',
 ];
 
 const navItems = [
