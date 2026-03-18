@@ -8,142 +8,286 @@ const images = [
   'https://cdn.poehali.dev/templates/creative-portfolio-ru/gallery-5.jpg',
 ];
 
+const navItems = [
+  {
+    label: 'О себе',
+    sub: ['Повышение квалификации', 'Результаты профессиональной деятельности', 'Публикации', 'Мои достижения'],
+  },
+  {
+    label: 'Документы',
+    sub: ['Программы', 'Планы работы', 'Деятельность в МО'],
+  },
+  {
+    label: 'Обучающимся',
+    sub: ['Советы психолога', 'Профориентация'],
+  },
+  {
+    label: 'Родителям',
+    sub: ['Советы родителям', 'Родительское собрание'],
+  },
+  {
+    label: 'Педагогам',
+    sub: ['Диагностический материал', 'Памятки', 'Игры'],
+  },
+  {
+    label: 'Интересно',
+    sub: ['Сказкотерапия'],
+  },
+];
+
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
     setIsLoaded(true);
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-white">
-      <div className="absolute inset-0">
-        {images.map((src, index) => (
-          <div
-            key={src}
-            className={cn(
-              'absolute inset-0 transition-opacity duration-1000 ease-in-out',
-              currentIndex === index ? 'opacity-100' : 'opacity-0'
-            )}
-          >
-            <img
-              src={src}
-              alt=""
-              className="h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent" />
-
-      <div className="relative z-10 flex h-full items-center">
-        <div className="container mx-auto px-8 md:px-16">
-          <div className="flex max-w-2xl flex-col gap-12">
-            {/* Portrait */}
+    <>
+      {/* ── HERO ── */}
+      <section className="relative h-screen w-full overflow-hidden bg-white">
+        {/* Background slideshow */}
+        <div className="absolute inset-0">
+          {images.map((src, index) => (
             <div
+              key={src}
               className={cn(
-                'transform transition-all duration-1000 ease-out',
-                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+                'absolute inset-0 transition-opacity duration-1000 ease-in-out',
+                currentIndex === index ? 'opacity-100' : 'opacity-0'
               )}
             >
-              <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-white shadow-2xl md:h-64 md:w-64">
-                <img
-                  src="https://cdn.poehali.dev/templates/creative-portfolio-ru/portrait.jpg"
-                  alt="Креативный специалист"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              <img src={src} alt="" className="h-full w-full object-cover" />
             </div>
+          ))}
+        </div>
 
-            <div
-              className={cn(
-                'transform transition-all duration-1000 delay-300 ease-out',
-                isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-              )}
-            >
-              <div className="space-y-4">
-                <p className="text-3xl font-light text-white md:text-4xl lg:text-5xl">
-                  Алексей Иванов
-                </p>
-                <p className="text-xl font-light text-white/80 md:text-2xl">
-                  Креативный директор | Дизайнер
-                </p>
-                <div className="flex gap-6 pt-4">
-                  <a
-                    href="https://t.me/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 transition-colors hover:text-white"
-                    aria-label="Telegram"
-                  >
-                    <svg
-                      className="h-7 w-7"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://vk.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 transition-colors hover:text-white"
-                    aria-label="VKontakte"
-                  >
-                    <svg
-                      className="h-7 w-7"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.745-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.043-2.763-5.32-2.763-5.788 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.863 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.422 2.18-3.625 2.18-3.625.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z" />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://instagram.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 transition-colors hover:text-white"
-                    aria-label="Instagram"
-                  >
-                    <svg
-                      className="h-7 w-7"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.689-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                    </svg>
-                  </a>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
+
+        {/* Content */}
+        <div className="relative z-10 flex h-full items-center">
+          <div className="container mx-auto px-8 md:px-16">
+            <div className="flex max-w-2xl flex-col gap-10">
+
+              {/* Portrait */}
+              <div
+                className={cn(
+                  'transform transition-all duration-1000 ease-out',
+                  isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+                )}
+              >
+                <div className="relative h-48 w-48 overflow-hidden rounded-full border-4 border-white/80 shadow-2xl md:h-60 md:w-60">
+                  <img
+                    src="/placeholder-user.jpg"
+                    alt="Шевцова Надежда Николаевна"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+
+              {/* Name & Title */}
+              <div
+                className={cn(
+                  'transform transition-all duration-1000 delay-300 ease-out',
+                  isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+                )}
+              >
+                <div className="space-y-3">
+                  <p className="text-3xl font-light text-white md:text-4xl lg:text-5xl">
+                    Шевцова Надежда Николаевна
+                  </p>
+                  <p className="text-xl font-light text-white/80 md:text-2xl">
+                    Педагог-психолог
+                  </p>
+                  <p className="text-base text-white/60 max-w-md leading-relaxed">
+                    Создаю безопасное пространство для роста, развития и гармонии каждого ребёнка
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute bottom-8 right-8 z-20 flex gap-2">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={cn(
-              'h-1 transition-all duration-300',
-              currentIndex === index ? 'w-12 bg-white' : 'w-8 bg-white/40 hover:bg-white/60'
-            )}
-            aria-label={`Перейти к слайду ${index + 1}`}
-          />
-        ))}
-      </div>
-    </section>
+        {/* Slide indicators */}
+        <div className="absolute bottom-8 right-8 z-20 flex gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={cn(
+                'h-1 transition-all duration-300',
+                currentIndex === index ? 'w-12 bg-white' : 'w-8 bg-white/40 hover:bg-white/60'
+              )}
+              aria-label={`Перейти к слайду ${index + 1}`}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ── NAVIGATION ── */}
+      <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="flex items-center overflow-x-auto">
+            {navItems.map((item) => (
+              <div
+                key={item.label}
+                className="relative flex-shrink-0"
+                onMouseEnter={() => setOpenMenu(item.label)}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <button className="flex items-center gap-1 px-5 py-5 text-sm font-medium text-gray-700 hover:text-[#6B5EA8] transition-colors whitespace-nowrap">
+                  {item.label}
+                  <svg className="w-3 h-3 mt-0.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Dropdown */}
+                {openMenu === item.label && (
+                  <div className="absolute top-full left-0 bg-white border border-gray-100 shadow-lg rounded-b-lg min-w-[220px] py-2 z-50">
+                    {item.sub.map((sub) => (
+                      <button
+                        key={sub}
+                        className="w-full text-left px-5 py-2.5 text-sm text-gray-600 hover:bg-[#6B5EA8]/8 hover:text-[#6B5EA8] transition-colors"
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* ── ABOUT SECTION ── */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <span className="text-xs font-semibold tracking-widest text-[#6B5EA8] uppercase">О педагоге-психологе</span>
+              <h2 className="text-3xl font-light text-gray-900 md:text-4xl leading-snug">
+                Надежда Николаевна<br />
+                <span className="text-gray-400">Шевцова</span>
+              </h2>
+              <p className="text-gray-600 leading-relaxed text-base">
+                Педагог-психолог с многолетним опытом работы с детьми, подростками и их семьями.
+                Специализируюсь на создании благоприятной психологической среды в образовательном
+                учреждении, помогаю детям раскрыть свой потенциал и справиться с трудностями.
+              </p>
+              <p className="text-gray-600 leading-relaxed text-base">
+                Использую современные методики: арт-терапию, сказкотерапию, игровые техники.
+                Каждый ребёнок уникален — и именно к каждому ищу свой подход.
+              </p>
+              <div className="flex gap-8 pt-4">
+                <div>
+                  <p className="text-3xl font-light text-[#6B5EA8]">10+</p>
+                  <p className="text-xs text-gray-500 mt-1">лет опыта</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-light text-[#6B5EA8]">500+</p>
+                  <p className="text-xs text-gray-500 mt-1">консультаций</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-light text-[#6B5EA8]">30+</p>
+                  <p className="text-xs text-gray-500 mt-1">публикаций</p>
+                </div>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-gray-100">
+                <img
+                  src="/placeholder-user.jpg"
+                  alt="Шевцова Надежда Николаевна"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-6 -left-6 bg-[#6B5EA8] text-white rounded-xl px-6 py-4 shadow-lg">
+                <p className="text-sm font-light opacity-80">Специализация</p>
+                <p className="font-medium">Педагогическая психология</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── AREAS SECTION ── */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="text-center mb-14">
+            <span className="text-xs font-semibold tracking-widest text-[#6B5EA8] uppercase">Направления работы</span>
+            <h2 className="text-3xl font-light text-gray-900 mt-3">Чем я могу помочь</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { icon: '🎓', title: 'Обучающимся', desc: 'Советы психолога, помощь в профориентации, работа с тревогой и учёбой' },
+              { icon: '👨‍👩‍👧', title: 'Родителям', desc: 'Консультации, советы по воспитанию, родительские собрания и встречи' },
+              { icon: '📚', title: 'Педагогам', desc: 'Диагностические материалы, памятки, развивающие игры для работы в классе' },
+              { icon: '🌱', title: 'Сказкотерапия', desc: 'Авторские сказки и методики для проработки трудных ситуаций через истории' },
+              { icon: '📋', title: 'Документы', desc: 'Программы, планы работы, отчётная документация и методические материалы' },
+              { icon: '🏆', title: 'Достижения', desc: 'Публикации, повышение квалификации, профессиональные конкурсы' },
+            ].map((card) => (
+              <div key={card.title} className="bg-white rounded-xl p-7 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                <div className="text-3xl mb-4">{card.icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-2">{card.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── NEWS / NEW INFO SECTION ── */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-8 md:px-16">
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <span className="text-xs font-semibold tracking-widest text-[#6B5EA8] uppercase">Обновления</span>
+              <h2 className="text-3xl font-light text-gray-900 mt-3">Новости и материалы</h2>
+            </div>
+          </div>
+
+          {/* Placeholder cards — сюда можно добавлять новые материалы */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { tag: 'Советы психолога', date: '15 марта 2026', title: 'Как помочь ребёнку справиться с тревогой перед экзаменом', excerpt: 'Практические рекомендации для учеников и их родителей в период итоговой аттестации.' },
+              { tag: 'Родителям', date: '10 марта 2026', title: 'Родительское собрание: итоги и полезные ресурсы', excerpt: 'Материалы и презентации с последнего родительского собрания доступны для скачивания.' },
+              { tag: 'Сказкотерапия', date: '1 марта 2026', title: 'Новая сказка: «Дружба начинается с улыбки»', excerpt: 'Авторская терапевтическая сказка для работы с темой дружбы и принятия в коллективе.' },
+            ].map((post) => (
+              <article key={post.title} className="group cursor-pointer">
+                <div className="aspect-video bg-gray-100 rounded-xl overflow-hidden mb-5">
+                  <img
+                    src="/placeholder.jpg"
+                    alt={post.title}
+                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-semibold text-[#6B5EA8] bg-[#6B5EA8]/10 px-3 py-1 rounded-full">{post.tag}</span>
+                  <span className="text-xs text-gray-400">{post.date}</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#6B5EA8] transition-colors leading-snug">{post.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{post.excerpt}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className="bg-gray-900 text-white/60 py-12">
+        <div className="container mx-auto px-8 md:px-16 text-center space-y-2">
+          <p className="text-white font-light text-lg">Шевцова Надежда Николаевна</p>
+          <p className="text-sm">Педагог-психолог</p>
+          <p className="text-xs mt-4 opacity-40">© 2026 — Все права защищены</p>
+        </div>
+      </footer>
+    </>
   );
 }
