@@ -183,6 +183,10 @@ export default function HeroSection() {
                   <p className="text-xl font-light text-white/80 md:text-2xl">
                     Педагог-психолог
                   </p>
+                  <p className="text-sm text-white/60 max-w-md leading-relaxed">
+                    Муниципальное бюджетное общеобразовательное учреждение Лысогорская средняя общеобразовательная школа<br />
+                    с. Лысогорка, Куйбышевского района, Ростовской области
+                  </p>
                   <p className="text-base text-white/60 max-w-md leading-relaxed">
                     Создаю безопасное пространство для роста, развития и гармонии каждого ребёнка
                   </p>
