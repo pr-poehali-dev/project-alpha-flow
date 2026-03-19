@@ -75,6 +75,7 @@ const navItems = [
   {
     label: 'О себе',
     sub: [
+      { label: 'Портфолио', path: '/about/portfolio' },
       { label: 'Повышение квалификации', path: '/about/qualification' },
       { label: 'Результаты профессиональной деятельности', path: '/about/results' },
       { label: 'Публикации', path: '/about/publications' },
@@ -84,7 +85,7 @@ const navItems = [
   {
     label: 'Документы',
     sub: [
-      { label: 'Программы', path: '/documents/programs' },
+      { label: 'Программы и документы', path: '/documents/programs' },
       { label: 'Планы работы', path: '/documents/plans' },
       { label: 'Деятельность в МО', path: '/documents/mo' },
     ],
@@ -92,7 +93,7 @@ const navItems = [
   {
     label: 'Обучающимся',
     sub: [
-      { label: 'Советы психолога', path: '/students/tips' },
+      { label: 'Материалы для обучающихся', path: '/students/tips' },
       { label: 'Профориентация', path: '/students/proforientation' },
     ],
   },
@@ -110,6 +111,11 @@ const navItems = [
       { label: 'Памятки', path: '/teachers/memos' },
       { label: 'Игры', path: '/teachers/games' },
     ],
+  },
+  {
+    label: 'Блог',
+    path: '/blog',
+    sub: [],
   },
   {
     label: 'Интересно',
@@ -207,17 +213,26 @@ export default function HeroSection() {
               <div
                 key={item.label}
                 className="relative flex-shrink-0"
-                onMouseEnter={() => setOpenMenu(item.label)}
+                onMouseEnter={() => item.sub.length > 0 && setOpenMenu(item.label)}
                 onMouseLeave={() => setOpenMenu(null)}
               >
-                <button className="flex items-center gap-1 px-5 py-5 text-sm font-medium text-gray-700 hover:text-[#6B5EA8] transition-colors whitespace-nowrap">
-                  {item.label}
-                  <svg className="w-3 h-3 mt-0.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
+                {item.sub.length === 0 && item.path ? (
+                  <Link
+                    to={item.path}
+                    className="flex items-center gap-1 px-5 py-5 text-sm font-medium text-gray-700 hover:text-[#6B5EA8] transition-colors whitespace-nowrap"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button className="flex items-center gap-1 px-5 py-5 text-sm font-medium text-gray-700 hover:text-[#6B5EA8] transition-colors whitespace-nowrap">
+                    {item.label}
+                    <svg className="w-3 h-3 mt-0.5 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                )}
 
-                {openMenu === item.label && (
+                {openMenu === item.label && item.sub.length > 0 && (
                   <div className="absolute top-full left-0 bg-white border border-gray-100 shadow-lg rounded-b-lg min-w-[240px] py-2 z-50">
                     {item.sub.map((sub) => (
                       <Link

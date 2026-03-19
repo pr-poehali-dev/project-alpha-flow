@@ -6,6 +6,9 @@ import Qualification from "./pages/about/Qualification";
 import Results from "./pages/about/Results";
 import Publications from "./pages/about/Publications";
 import Achievements from "./pages/about/Achievements";
+import Portfolio from "./pages/about/Portfolio";
+
+import Blog from "./pages/Blog";
 
 import Programs from "./pages/documents/Programs";
 import Plans from "./pages/documents/Plans";
@@ -33,6 +36,10 @@ const App = () => (
       <Route path="/about/results" element={<Results />} />
       <Route path="/about/publications" element={<Publications />} />
       <Route path="/about/achievements" element={<Achievements />} />
+      <Route path="/about/portfolio" element={<Portfolio />} />
+
+      {/* Блог */}
+      <Route path="/blog" element={<Blog />} />
 
       {/* Документы */}
       <Route path="/documents/programs" element={<Programs />} />

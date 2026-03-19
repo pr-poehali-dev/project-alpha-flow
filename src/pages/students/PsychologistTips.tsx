@@ -1,23 +1,57 @@
 import SubpageLayout, { ContentBlock, EmptyBlock } from '@/components/SubpageLayout';
+import Icon from '@/components/ui/icon';
+
+const sections = [
+  {
+    title: 'Конспекты уроков и учебные материалы',
+    description: 'Конспекты уроков, дополнительная расширенная информация и рекомендации по учебной программе, включая информацию об электронных учебниках и учебных пособиях.',
+  },
+  {
+    title: 'Авторские цифровые образовательные ресурсы',
+    description: 'Авторские цифровые образовательные ресурсы, разработанные педагогом-психологом для обучающихся.',
+  },
+  {
+    title: 'Полезные ссылки',
+    description: 'Ссылки на русскоязычные и зарубежные ресурсы по тематике психологии, развития и образования.',
+  },
+  {
+    title: 'Олимпиады и конкурсы',
+    description: 'Информация и анонсы об олимпиадах, конкурсах и других мероприятиях для обучающихся.',
+  },
+  {
+    title: 'Расписание занятий',
+    description: 'Расписание занятий и другая информация организационного характера.',
+  },
+  {
+    title: 'Видеозаписи открытых уроков и вебинаров',
+    description: 'Видеозаписи открытых уроков и вебинаров с участием педагогического работника.',
+  },
+];
 
 export default function PsychologistTips() {
   return (
-    <SubpageLayout section="Обучающимся" title="Советы психолога">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        {[
-          { emoji: '😰', title: 'Как справиться с тревогой перед экзаменом', text: 'Дыши медленно: 4 секунды вдох, 4 — задержка, 6 — выдох. Это активирует парасимпатическую систему и снижает стресс. Вспомни, что ты уже справлялся с трудными ситуациями.' },
-          { emoji: '😴', title: 'Режим и сон — основа успеха', text: 'Подростку нужно 8–10 часов сна. За час до сна убери телефон и включи мягкий свет. Мозг запоминает информацию именно во время сна — не жертвуй им ради зубрёжки.' },
-          { emoji: '🤝', title: 'Что делать, если конфликт с одноклассниками', text: 'Не отвечай в гневе. Сделай паузу, описывай свои чувства (не обвиняй), ищи то, что важно обеим сторонам. Если не получается — обратись к школьному психологу.' },
-          { emoji: '📵', title: 'Цифровая гигиена', text: 'Устанавливай лимиты на социальные сети. Каждые 45 минут за экраном — 10–15 минут перерыва. Выходи на улицу хотя бы 30 минут в день — это улучшает концентрацию.' },
-        ].map((tip) => (
-          <ContentBlock key={tip.title}>
-            <div className="text-3xl mb-4">{tip.emoji}</div>
-            <h3 className="font-semibold text-gray-900 mb-3">{tip.title}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{tip.text}</p>
-          </ContentBlock>
-        ))}
-      </div>
-      <EmptyBlock hint="Здесь можно добавить новые советы и статьи для обучающихся" />
+    <SubpageLayout section="Обучающимся" title="Материалы для обучающихся">
+      <ContentBlock title="О разделе">
+        <p className="text-sm text-gray-500 leading-relaxed">
+          Раздел содержит информацию образовательного характера для обучающихся. На базе данного раздела организуется дистанционное обучение: дистанционные курсы, вебинары, тесты, опросы и консультации по предмету. Формат представления материалов — текстовый и (или) копии документов в формате PDF.
+        </p>
+      </ContentBlock>
+      <ContentBlock title="Содержание раздела">
+        <div className="space-y-4">
+          {sections.map((item, i) => (
+            <div key={i} className="flex gap-4 py-4 border-b border-gray-50 last:border-0">
+              <div className="w-8 h-8 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center shrink-0 mt-0.5">
+                <Icon name="BookOpen" size={15} className="text-[#6B5EA8]" />
+              </div>
+              <div>
+                <p className="font-medium text-gray-900 mb-1">{item.title}</p>
+                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ContentBlock>
+      <EmptyBlock hint="Здесь можно добавить материалы, ссылки и видеозаписи для обучающихся" />
     </SubpageLayout>
   );
 }
