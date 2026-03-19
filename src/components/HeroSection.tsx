@@ -291,14 +291,14 @@ export default function HeroSection() {
                   <div className="w-10 h-10 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center text-lg">📧</div>
                   <div>
                     <p className="text-xs text-gray-400">Электронная почта</p>
-                    <p className="text-gray-700 font-medium">example@mail.ru</p>
+                    <p className="text-gray-700 font-medium">NadezhdaShevtsov1@yandex.ru</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-[#6B5EA8]/10 flex items-center justify-center text-lg">🏫</div>
                   <div>
                     <p className="text-xs text-gray-400">Место работы</p>
-                    <p className="text-gray-700 font-medium">Название образовательного учреждения</p>
+                    <p className="text-gray-700 font-medium">Муниципальное бюджетное общеобразовательное учреждение Лысогорская средняя общеобразовательная школа, с. Лысогорка, Куйбышевского района, Ростовской области</p>
                   </div>
                 </div>
 
